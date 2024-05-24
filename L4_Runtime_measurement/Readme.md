@@ -23,6 +23,12 @@ We provide a python notebook for you to measure the runtime performance of a 2D 
 ```
 Profiling_w_libraries.ipynb
 ``` 
+or
+ 
+<a target="_blank" href="https://colab.research.google.com/github/GenAI-CUEE/EE208-Introduction-to-programming-for-EE/tree/master/L4_Runtime_measurement/Profiling_w_libraries.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 
 The file contains the examples of the following topics:
 
