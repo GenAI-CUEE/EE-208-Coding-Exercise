@@ -1,26 +1,28 @@
+# How to measure the runtime performance
+
 
 Our goal is to provide the code-based example for how to measure the runtime performance in **2102208 Programming for EE**.
 
 ## Summary
 
-    ```
-    There are many ways to measure the runtime performance: 
+There are many ways to measure the runtime performance: 
 
-    1. Time difference is the amount of time spent for the operation (depend on the processor).
+1. Time difference is the amount of time spent for the operation (depend on the processor).
 
-    2. MACs and flop counts (independent of the processor)
-        - Flop counts is the number of operations, which include addition, subtraction, multiplication, and division operations on floating-point numbers.  
-        - MACs, on the other hand, is the number of a set of operations, that is, the multiply-accumulate operations that involves one multiplying two numbers and adding the result. Often, used in deep learning apps. 
-    
-    3. FLOP/s or floating-point operations per second is the number of operations executed per second by a processor.   
-    ```
+2. MACs and flop counts (independent of the processor)
+    - Flop counts is the number of operations, which include addition, subtraction, multiplication, and division operations on floating-point numbers.  
+    - MACs, on the other hand, is the number of a set of operations, that is, the multiply-accumulate operations that involves one multiplying two numbers and adding the result. Often, used in deep learning apps. 
+
+3. FLOP/s or floating-point operations per second is the number of operations executed per second by a processor.   
 
   
 ## Python libraries 
 
 We provide a python notebook for you to measure the runtime performance of a 2D convolution operation on an image.
 
-`Profiling_w_libraries.ipynb` or <a target="_blank" href="https://colab.research.google.com/github/GenAI-CUEE/EE208-Introduction-to-programming-for-EE/tree/master/L4_Runtime_measurement/Profiling_w_libraries.ipynb">
+`Profiling_w_libraries.ipynb` 
+
+<a target="_blank" href="https://colab.research.google.com/github/GenAI-CUEE/EE208-Introduction-to-programming-for-EE/tree/master/L4_Runtime_measurement/Profiling_w_libraries.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
