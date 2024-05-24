@@ -22,25 +22,25 @@ We provide a python notebook for you to measure the runtime performance of a 2D 
 
 `Profiling_w_libraries.ipynb` 
 
-<a target="_blank" href="https://colab.research.google.com/github/GenAI-CUEE/EE208-Introduction-to-programming-for-EE/tree/master/L4_Runtime_measurement/Profiling_w_libraries.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/GenAI-CUEE/EE208-Introduction-to-programming-for-EE/blob/master/L4_Runtime_measurement/Profiling_w_libraries.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
 
-The file contains the examples of the following topics:
+The file contains the examples of how to measure the runtime performance in the following aspects:
 
 1. Time difference
-    - Time library [Ref: https://docs.python.org/3/library/time.html]
-    - cProfile library [Ref: https://docs.python.org/3/library/profile.html]
+    - [Time library [1]](https://docs.python.org/3/library/time.html)
+    - [cProfile library [2]](https://docs.python.org/3/library/profile.html)
 2. Macs and flop-counts 
-    - Operation counter (thop) [Ref: https://github.com/Lyken17/pytorch-OpCounter]
-    - Torch profiler [Ref: https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html]
+    - [Operation counter (thop) [3]](https://github.com/Lyken17/pytorch-OpCounter)
+    - [Torch profiler [4]](https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html)
 3. FLOP/S 
-    - FLOPS profiler [Ref: https://pypi.org/project/flops-profiler]
+    - [FLOPS profiler [5]](https://pypi.org/project/flops-profiler)
 
 ## Nsys profiling
 
-Nsys profiling is a very useful tool to evaluate the runtime performance. Here, you can look at our example python script `example_torch_profile.py`. 
+[Nsys profiling [6]](https://dev-discuss.pytorch.org/t/using-nsight-systems-to-profile-gpu-workload/59) is a very useful tool to evaluate the runtime performance. Here, you can track the runtime in each step of your code by using the command `torch.cuda.nvtx.range_push()` and `torch.cuda.nvtx.range_pop()`. You can put a marker of that step by putting a text in `range_push()`, e.g., `torch.cuda.nvtx.range_push('start')`. You can see our example: `example_torch_profile.py`. 
 
 Then, all you have to do is running the following command in the command prompt:
 
@@ -48,5 +48,17 @@ Then, all you have to do is running the following command in the command prompt:
 nsys profile -w true -t cuda,nvtx,osrt,cudnn,cublas -s cpu  --capture-range=cudaProfilerApi --cudabacktrace=true -x true -o my_profile python example_torch_profile.py --force-overwrite true --cuda-memory-usage true
 ```
 
-Ref : https://dev-discuss.pytorch.org/t/using-nsight-systems-to-profile-gpu-workload/59 
+Once you execute the above command, you will get a file called `my_profile.nsys-rep`. Then, you can view the profiled data with NVIDIA Nsignt, which might look like this:
+
+<img src="figs/nvtx_output_example.png" alt="nvtx output" width="1000"/>  
+
+
+### References
+
+1. https://docs.python.org/3/library/time.html
+2. https://docs.python.org/3/library/profile.html  
+3. https://github.com/Lyken17/pytorch-OpCounter
+4. https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html
+5. https://pypi.org/project/flops-profiler 
+6. https://dev-discuss.pytorch.org/t/using-nsight-systems-to-profile-gpu-workload/59
  
