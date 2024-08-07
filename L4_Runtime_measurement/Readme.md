@@ -1,7 +1,7 @@
 # How to measure the runtime performance
 
 
-Our goal is to provide the code-based example for how to measure the runtime performance in **2102208 Programming for EE**.
+The goal is to provide the code-based example for how to measure the runtime performance.
 
 ## Summary
 
@@ -18,9 +18,9 @@ There are many ways to measure the runtime performance:
   
 ## Python libraries 
 
-We provide a python notebook for you to measure the runtime performance of a 2D convolution operation on an image.
+We provide a tutorial about measuring Time difference, MACs, and FLOP/s.
 
-`Profiling_w_libraries.ipynb` 
+`Profiling_with_libraries.ipynb` 
 
 <a target="_blank" href="https://colab.research.google.com/github/GenAI-CUEE/EE208-Introduction-to-programming-for-EE/blob/master/L4_Runtime_measurement/Profiling_w_libraries.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
@@ -40,12 +40,14 @@ The file contains the examples of how to measure the runtime performance in the 
 
 ## Nsys profiling
 
-[Nsys profiling [6]](https://dev-discuss.pytorch.org/t/using-nsight-systems-to-profile-gpu-workload/59) is a very useful tool to evaluate the runtime performance. Here, you can track the runtime in each step of your code by using the command `torch.cuda.nvtx.range_push()` and `torch.cuda.nvtx.range_pop()`. You can put a marker of that step by putting a text in `range_push()`, e.g., `torch.cuda.nvtx.range_push('start')`. You can see our example: `example_torch_profile.py`. 
+[Nsys profiling [6]](https://dev-discuss.pytorch.org/t/using-nsight-systems-to-profile-gpu-workload/59) is a very useful tool to evaluate the runtime performance.
+
+ You can see our example: `Profiling_with_nvidia.py`. Here, you can track the runtime in each step of your code by using the command `torch.cuda.nvtx.range_push()` and `torch.cuda.nvtx.range_pop()`. You can put a marker of that step by putting a text in `range_push()`, e.g., `torch.cuda.nvtx.range_push('start')`.
 
 Then, all you have to do is running the following command in the command prompt:
 
 ```
-nsys profile -w true -t cuda,nvtx,osrt,cudnn,cublas -s cpu  --capture-range=cudaProfilerApi --cudabacktrace=true -x true -o my_profile python example_torch_profile.py --force-overwrite true --cuda-memory-usage true
+nsys profile -w true -t cuda,nvtx,osrt,cudnn,cublas -s cpu  --capture-range=cudaProfilerApi --cudabacktrace=true -x true -o my_profile python Profiling_with_nvidia.py --force-overwrite true --cuda-memory-usage true
 ```
 
 Once you execute the above command, you will get a file called `my_profile.nsys-rep`. Then, you can view the profiled data with NVIDIA Nsignt, which might look like this:
