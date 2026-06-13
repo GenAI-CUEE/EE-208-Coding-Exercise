@@ -1,4 +1,4 @@
- Our goal is to provide the code-based visualization and exercises to understand the mathematics behind each of lectures in **Programming for EE 2102208** by *Suwichaya Suwanwimolkul*.
+ Our goal is to provide the code-based visualization to understand the idea behind some parts of the lectures in **Programming for EE 2102208** by *Suwichaya Suwanwimolkul*.
 
 ### Topics
 
