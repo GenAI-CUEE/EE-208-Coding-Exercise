@@ -1,4 +1,4 @@
-# Debugging Exercise 2: Shapes, Loops, and Breakpoints
+# Debugging Exercise: Numpy Shapes, Loops, and Breakpoints
 
 ## Setup
 
@@ -28,6 +28,11 @@ Your job: find and fix both bugs so `python report.py` runs cleanly
 and produces the correct report (see "Expected Output" below).
 
 **Do not change `report.py`** — only edit `student_scores.py`.
+
+<p align="center">
+      <img src="PPT.png" alt="PPT" width="500">
+    </p>
+
 
 ---
 
@@ -192,3 +197,8 @@ default to `None` when no student fails.
 3. When would you use a debugger breakpoint instead of `print()`
    statements to investigate a loop like this? What extra information
    does a breakpoint give you that a single `print()` might not?
+
+## Reference
+
+See [debugging_student_scores_exercise.pdf](debugging_student_scores_exercise.pdf)
+
