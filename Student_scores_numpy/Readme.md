@@ -199,3 +199,4 @@ default to `None` when no student fails.
    does a breakpoint give you that a single `print()` might not?
 
 
+See [debugging_student_scores_exercise.pdf](debugging_student_scores_exercise.pdf) for more details.
