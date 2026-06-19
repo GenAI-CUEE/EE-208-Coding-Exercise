@@ -198,7 +198,4 @@ default to `None` when no student fails.
    statements to investigate a loop like this? What extra information
    does a breakpoint give you that a single `print()` might not?
 
-## Reference
-
-See [debugging_student_scores_exercise.pdf](debugging_student_scores_exercise.pdf)
 
