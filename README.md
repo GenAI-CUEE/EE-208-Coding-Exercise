@@ -27,7 +27,7 @@
     </p>
 
 
--[Matmul and GFLOP](Matmul_and_GFLOP/Readme.md) 
+- [Matmul and GFLOP](Matmul_and_GFLOP/Readme.md) 
   This exercise asks you to implement matrix multiplication using three nested Python loops and derive the FLOP count for matrix multiplication from its algorithmic definition. 
 
 
