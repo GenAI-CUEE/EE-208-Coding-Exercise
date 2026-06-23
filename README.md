@@ -1,5 +1,7 @@
  Our goal is to provide the code-based visualization to understand the idea behind some parts of the lectures in **Programming for EE 2102208** by *Suwichaya Suwanwimolkul*.
 
+You can download course materials from [here](https://drive.google.com/drive/folders/1W5l3XV3gomwPGVU86zc30-jYs8YocZxH?usp=drive_link)
+
 ### Topics
 
 - [Loop Tracer](Loop_Tracer/Readme.md)
