@@ -7,9 +7,9 @@ cart = [("apple", 2, 1.50), ("bread", 1, 3.00), ("milk",  3, 2.25)]
 
 
 
-# ---------------------------------------------------------------------------------------------- #
-#  --------------------------- Problem During Break   ------------------------------------------ #
-# ----------------------------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------------------------------------------- #
+#  -------------------------------------- Problem --------------------------------------------------------------- #
+# ---------------------------------------------------------------------------------------------------------------- #
 
 # Suppose that we know the cost of each product 
 # The cost of each product are 
@@ -36,21 +36,23 @@ cart = [("apple", 2, 1.50), ("bread", 1, 3.00), ("milk",  3, 2.25)]
 ## Simple idea : 1 product ##
 
 # Step 1. Generate the dict for selling price from the list of tuple (defined above). Let's define an input1 
- 
-input1 = {cart[0][0]: cart[0][2]} 
 
-# Step 2. Suppose that input2 for each product is {"apple": 1}, {"bread": 2.50}, {"milk": 2.25}. Let's define an input2 
+product1 = cart[0]
+product_name1 = product1[0]
+product_sell1 = product1[2]
+
+input1 = {product_name1: product_sell1}
+
+# Step 2. Suppose that input2 for each product is {"apple", 1}, {"bread", 2.50}, {"milk", 2.25}. Let's define an input2 
 
 input2 = {"apple": 1}
 
 # Step 4. Let's do a simple calculation without Extra
+# def calculate_markup(input1, input2)
 
-def calculate_markup(input1, input2):
-    
- 
-
-
-
+from packages.price import calculate_markup
+output = calculate_markup(input1, input2) 
+#breakpoint()
 
 
 ##########################################################################################################
@@ -59,16 +61,35 @@ def calculate_markup(input1, input2):
 ## Extend the calculation for all the product sold to the customer ##
 
 # Step 5. >> Get a list that dicts, i.e., [ {"product_name1": selling_price1}, {"product_name2": selling_price2}, {"product_name3": selling_price3}]
+input1_list = []
 
-# Step 6. >> Turn above info into list of dict , i.e., [{"apple": 1},  {"bread": 2.50}, {"milk": 2.25}]
+for cart_ in cart:
+    product1 =  cart_
+    product_name1 = product1[0]
+    product_sell1 = product1[2]
+
+    input1 = {product_name1: product_sell1}
+    input1_list.append(input1)
+
+input1_list 
+
+# Step 6. >> Turn above info into list of dict , i.e.,[{"apple": 1},  {"bread": 2.50}, {"milk": 2.25}]
+input2_list = [{"apple": 1},  {"bread": 2.50}, {"milk": 2.25}]
 
 # Step 7. >> Does it work correctly ? 
 
+output_list = []
+for i, input1 in enumerate(input1_list):
+    input2 = input2_list[i] 
+    breakpoint()
+    output = calculate_markup(input1, input2) 
+    output_list.append(output)
 
+output_list
+breakpoint() 
 ##########################################################################################################
 
 
 ## Do the extra ##
-# Step 8. Let us create a new python file inside  packages/ folder called price.py that contain `calculate_markup` function
-
-# Step 9. Make sure the function is linked, and can be executed. 
+# Let us create a new python file inside  packages/ folder called price.py that contain `calculate_markup` function
+# Make sure the function is linked, and can be executed. 
