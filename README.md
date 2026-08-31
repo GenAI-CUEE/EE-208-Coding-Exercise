@@ -4,6 +4,17 @@ You can download course materials from [here](https://drive.google.com/drive/fol
 
 ### Topics
 
+- [Python basic command](Python_basic_commands/Readme.md)
+  This folder contains the python scripts for each topic:
+
+  | Topic | Script |
+  |-------|--------|
+  | `if`/`elif`/`else` combined with `try`/`except` for input validation | [Tutorial_ifelse_tryexcept.py](Python_basic_commands/Tutorial_ifelse_tryexcept.py) |
+  | Basic list operations (`append`, indexing, iteration) | [Tutorial_list.py](Python_basic_commands/Tutorial_list.py) |
+  | Debugging with `pdb`/`breakpoint()` | [tutorial_pdb.py](Python_basic_commands/tutorial_pdb.py) |
+  | `try`/`except` for handling invalid conversions | [Tutorial_try_except.py](Python_basic_commands/Tutorial_try_except.py) |
+
+
 - [Loop Tracer](Loop_Tracer/Readme.md)
   A short exercise in using Python's interactive debugger (`pdb`) to step through a `for` loop one iteration at a time, watching variables come into existence as the loop runs.
 
