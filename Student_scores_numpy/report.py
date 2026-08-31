@@ -47,11 +47,13 @@ weights = np.array([0.15, 0.15, 0.30, 0.40])
 
 def main():
     final_scores = compute_final_scores(scores, weights)
+ 
 
     print("=== Final Grades ===") 
     print(f"final_scores.shape = {final_scores.shape}  (expected: (8,))")
     for name, score in zip(STUDENT_NAMES, final_scores): 
         print("%s: %.2f" % (name, score))
+
  
 
     print("\n=== First Failing Student (score < %.1f) ===" % PASSING_SCORE)
@@ -62,6 +64,7 @@ def main():
     else: 
         print("First failing student: %s (index %d), score = %.2f" % (name, idx, final_scores[idx]))
 
+    breakpoint()
 
 if __name__ == "__main__":
     main()

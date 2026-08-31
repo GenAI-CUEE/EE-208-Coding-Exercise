@@ -1,0 +1,164 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+% --- Code listing style ---
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codekw}{RGB}{0,0,160}
+\definecolor{codestr}{RGB}{0,120,0}
+\definecolor{codecmt}{RGB}{130,130,130}
+
+\lstdefinestyle{python}{
+    language=Python,
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{codekw}\bfseries,
+    stringstyle=\color{codestr},
+    commentstyle=\color{codecmt}\itshape,
+    numbers=none,
+    breaklines=true,
+    showstringspaces=false,
+    frame=single,
+    rulecolor=\color{gray!40},
+    framesep=6pt,
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    tabsize=4,
+}
+
+\lstdefinestyle{shellstyle}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{gray!40},
+    framesep=6pt,
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+}
+
+\lstset{style=python}
+
+% --- Section spacing ---
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+\newcommand{\horizrule}{\noindent\rule{\textwidth}{0.4pt}}
+
+\title{\textbf{Game --- Debug the Module}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-2.5em}
+
+\noindent A short exercise in using Python's interactive debugger (\texttt{pdb}) to find a bug that lives in an \textbf{imported module}, not your main script.
+
+\vspace{0.5em}
+\horizrule
+
+\section*{The Bug}
+
+\texttt{main.py} imports \texttt{calculate\_total} from \texttt{shop.py}, but the result is wrong:
+
+\begin{lstlisting}
+# main.py
+from shop import calculate_total
+
+cart = [("apple", 2, 1.50),
+        ("bread", 1, 3.00),
+        ("milk",  3, 2.25)]
+
+print(calculate_total(cart))
+
+# Expected: 12.75 -> Got: 6.75
+\end{lstlisting}
+
+The bug is somewhere inside \texttt{shop.py}:
+
+\begin{lstlisting}
+# shop.py
+def calculate_total(cart):
+    total = 0
+    for name, qty, price in cart:
+        total += price
+    return total
+# Bug is somewhere in here!
+\end{lstlisting}
+
+\horizrule
+
+\section*{Your Mission}
+
+\begin{enumerate}[leftmargin=*]
+    \item \texttt{main.py} imports \texttt{calculate\_total} from \texttt{shop.py} --- but the result is wrong.
+    \item Open \texttt{shop.py} and add \texttt{breakpoint()} as the \textbf{first line inside the \texttt{for} loop}.
+    \item Run \texttt{python main.py} from the terminal. Execution pauses inside \texttt{shop.py}.
+    \item At the \texttt{(Pdb)} prompt, type \texttt{p name}, \texttt{p qty}, and \texttt{p price} for each item.
+    \item Type \texttt{n} to step forward and watch how \texttt{total} changes --- is \texttt{qty} being used?
+    \item Find the missing piece, fix the line, remove \texttt{breakpoint()}, and re-run!
+\end{enumerate}
+
+\horizrule
+
+\section*{Cross-File Tip}
+
+\texttt{pdb} pauses wherever \texttt{breakpoint()} is --- \textbf{even if that's inside an imported module, not your main script.} You don't need to put the breakpoint in \texttt{main.py} to debug code that lives elsewhere; the debugger follows execution across file boundaries.
+
+\horizrule
+
+\section*{Files}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+File & Role \\
+\midrule
+\texttt{shop.py} & The module containing \texttt{calculate\_total()} --- and the bug. \\
+\texttt{main.py} & Entry point. Imports and calls \texttt{calculate\_total()}. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Requirements}
+
+\begin{itemize}[leftmargin=*]
+    \item Python 3.7+ (for built-in \texttt{breakpoint()} support)
+\end{itemize}
+
+\section*{Running}
+
+\begin{lstlisting}[style=shellstyle]
+python main.py
+\end{lstlisting}
+
+\noindent Once you've added \texttt{breakpoint()} to \texttt{shop.py} as instructed above, this will drop you into an interactive \texttt{(Pdb)} session at that line.
+
+\subsection*{Useful \texttt{pdb} commands for this exercise}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Command & Effect \\
+\midrule
+\texttt{p <expr>} & Print the value of \texttt{<expr>} (e.g., \texttt{p qty}) \\
+\texttt{n} & Next line (step over) \\
+\texttt{c} & Continue execution until the next breakpoint \\
+\texttt{l} & List source code around the current line \\
+\texttt{q} & Quit the debugger \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}
